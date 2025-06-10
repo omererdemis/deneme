@@ -1,1 +1,1 @@
-deneme
+deneme web uygulamasi
