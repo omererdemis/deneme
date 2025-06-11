@@ -1,66 +1,58 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
 }
 
-header.hero {
-    background: #004d99;
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a0dad, #ffffff);
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite;
     color: #fff;
     text-align: center;
-    padding: 60px 20px;
 }
 
-header.hero .btn {
-    display: inline-block;
+#countdown {
+    font-size: 3rem;
     margin-top: 20px;
-    padding: 10px 20px;
-    background: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    border-radius: 4px;
 }
 
-.section {
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hidden { display: none; }
+
+#surprise {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.fade-in {
+    animation: fadein 2s forwards;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gallery {
     padding: 40px 20px;
     text-align: center;
+    background: #f2f2f2;
 }
 
-.section.alt {
-    background: #e0e0e0;
-}
-
-.section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.section li {
-    margin: 10px 0;
-}
-
-.cta {
-    background: #004d99;
-    color: #fff;
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.cta .btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
+.gallery img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
