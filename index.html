@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutlu Yıllar Azin</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a0dad, #ffffff);
+            background-size: 400% 400%;
+            animation: gradient 8s ease infinite;
+            color: #fff;
+            text-align: center;
+        }
+        #countdown {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hidden { display: none; }
+        #surprise {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .fade-in {
+            animation: fadein 2s forwards;
+        }
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background: #f2f2f2;
+        }
+        .gallery img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>İyi ki Doğdun Azin</h1>
+        <div id="countdown">00:00</div>
+    </div>
+
+    <div id="surprise" class="hidden">
+        <h2>Doğum Günün Kutlu Olsun Azin!</h2>
+        <audio id="music" controls>
+            <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_375fb2ec4e.mp3?filename=love-story-11800.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <section class="gallery">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=60" alt="Doğa 1">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60" alt="Doğa 2">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=60" alt="Doğa 3">
+    </section>
+
+    <script>
+        const countdownEl = document.getElementById('countdown');
+        const surpriseEl = document.getElementById('surprise');
+        const music = document.getElementById('music');
+
+        const target = new Date();
+        target.setMinutes(target.getMinutes() + 1); // 1 dakika sonra
+
+        function update() {
+            const now = new Date();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                clearInterval(timer);
+                countdownEl.textContent = '00:00';
+                surpriseEl.classList.remove('hidden');
+                surpriseEl.classList.add('fade-in');
+                music.play();
+            } else {
+                const minutes = String(Math.floor(diff / 1000 / 60)).padStart(2, '0');
+                const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+                countdownEl.textContent = `${minutes}:${seconds}`;
+            }
+        }
+
+        const timer = setInterval(update, 1000);
+        update();
+    </script>
+</body>
+</html>
